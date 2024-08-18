@@ -9,7 +9,7 @@ var settingsRound = { "strategyAcode": '', "strategyBcode": '', "pointsA": 0, "p
 var friedmanFidelity;
 var tttFirst;
 var round = 0;
-var gamesPerRound = 200;
+var gamesPerRound = 300;
 var graaskampCounter = 1;
 var respuestasRound = []; //   {"teamA":playerA, "resA":resA,"teamB":playerB,"resB": resB}
 var tideman_K = 0;
@@ -41,11 +41,14 @@ var strategies = [
     // { "name": 'at', "full_name": "Siempre coopera", "Author": "Test", "points": 0, "description": "Always plays C" },
 
 ];
+
+//funcion para saber si es el jugadorA o el B
 function soyA(team) {
     var soyA;
     respuestasRound[0].teamA == team ? soyA = true : soyA = false;
     return soyA;
 }
+//Funcion que devuelve las Cooperaciones del rival
 function CfromRivalOf(team) {
     var count;
     if (soyA(team)) {
@@ -55,6 +58,52 @@ function CfromRivalOf(team) {
     }
     return count;
 }
+
+
+function history_of_rival_of(team) {
+    var respuesta ;
+    if (soyA(team)) {
+        respuesta = respuestasRound.map(item => item.resB   );
+    } else {
+        respuesta =respuestasRound.map(item => item.resA   );
+    }
+    console.log(respuesta)
+    return respuesta;
+}
+function history_of_(team) {
+    var respuesta ;
+    if (soyA(team)) {
+        respuesta = respuestasRound.map(item => item.resA   );
+    } else {
+        respuesta =respuestasRound.map(item => item.resB   );
+    }
+    console.log(respuesta)
+    return respuesta;
+}
+
+//Funcion que devuelve la ultima respuesta del rival
+function last_response_of_Rival_of(team,n) {
+    var respuesta ;
+    if (soyA(team)) {
+        respuesta = respuestasRound[respuestasRound.length-1].resB;
+    } else {
+        respuesta = respuestasRound[respuestasRound.length-1].resA;
+    }
+    return respuesta;
+}
+
+//Funcion que devuelve la ultima respuesta del propio equipo
+function last_response_of(team) {
+    var respuesta ;
+    if (soyA(team)) {
+        respuesta = respuestasRound[respuestasRound.length-1].resA;
+    } else {
+        respuesta = respuestasRound[respuestasRound.length-1].resB;
+    }
+    return respuesta;
+}
+
+//Funcion que devuelve las Cooperaciones del rival respondiendo a Cooperaciones
 function number_cooperations_in_response_to_C_from_Rival_Of(team) {
     var count = 0;
     if (soyA(team)) {
@@ -72,6 +121,7 @@ function number_cooperations_in_response_to_C_from_Rival_Of(team) {
     }
     return count;
 }
+//Funcion que devuelve las Cooperaciones del rival respondiendo a Deflections
 function number_cooperations_in_response_to_D_from_Rival_Of(team) {
     var count = 0;
     if (soyA(team)) {
@@ -89,6 +139,7 @@ function number_cooperations_in_response_to_D_from_Rival_Of(team) {
     }
     return count;
 }
+
 function ttt(res) {
     //La primera
     if (res === undefined) {
@@ -261,7 +312,19 @@ function graaskamp(res) {
     }
 }
 function fbd(res) {
+    //La primera
+    if (res === undefined)
+        return false;
+    //Las demas
+    else if (graaskampCounter < 49) {
+        graaskampCounter++;
+        return res;
+    }
+    else {
+        graaskampCounter = 0;
+        return false;
 
+    }
 }
 function feld(res) {
     //La primera
@@ -400,8 +463,8 @@ function addround(colaboraA, colaboraB) {
     var divA = document.createElement("div");
     var divB = document.createElement("div");
     div.className = "roundcouple";
-    divA.innerHTML = Math.floor(settingsRound.ronda);
-    divB.innerHTML = Math.floor(settingsRound.ronda);
+    divA.innerHTML = Math.floor(round);
+    divB.innerHTML = Math.floor(round);
     if (colaboraA)
         divA.className = 'dot coopera';
     else
