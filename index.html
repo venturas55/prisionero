@@ -26,14 +26,16 @@
     </div>
   </nav>
 
-<!--   <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" title="Popover title"
+  <!--   <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" title="Popover title"
     data-bs-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button> -->
 
   <div class="container">
     <div id="app2">
       <div class="text-center mb-3">
         <h2>Axelrod’s first tournament</h2>
-        <p>Axelrod’s first tournament is described in his 1980 paper entitled ‘Effective choice in the Prisoner’s Dilemma’ [Axelrod1980]. This tournament included 14 strategies (plus a random “strategy”) and they are listed below, (ranked in the order in which they appeared).</p>
+        <p>Axelrod’s first tournament is described in his 1980 paper entitled ‘Effective choice in the Prisoner’s
+          Dilemma’ [Axelrod1980]. This tournament included 14 strategies (plus a random “strategy”) and they are listed
+          below, (ranked in the order in which they appeared).</p>
         <button class="btn btn-primary" onclick="playRoyalRumble()">ROYALRUMBLE</button>
       </div>
       <div id="panel2">
@@ -43,7 +45,7 @@
     <div id="app1">
       <div class="d-flex mb-2">
         <h3>Select Strategy A</h3>
-        <select  class="custom-select" name="strategyA" id="strategyA">
+        <select class="custom-select" name="strategyA" id="strategyA">
           <option value="ttt">Tit for 2 tats</option>
           <option value="t4t">Tit fot Tat</option>
           <option value="tdm">Tideman and Chieruzzi</option>
@@ -70,7 +72,7 @@
       </div>
       <div class="d-flex">
         <h3>Select Strategy B</h3>
-        <select  class="custom-select"  name="strategyB" id="strategyB">
+        <select class="custom-select" name="strategyB" id="strategyB">
           <option value="ttt">Tit for 2 tats</option>
           <option value="t4t">Tit fot Tat</option>
           <option value="tdm">Tideman and Chieruzzi</option>
@@ -106,6 +108,33 @@
     </div>
 
   </div>
+<!-- Modal -->
+<div class="modal fade" id="descriptionModal" tabindex="-1" aria-labelledby="descriptionModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-between align-items-center">
+        <div>
+          <h5 class="modal-title" id="descriptionModalLabel"></h5>
+          <p class="mb-0 small">Autor: <span id="modalAuthor"></span></p>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body" >
+        <h4>Descripcion:</h4>
+        <p id="modalDescriptionBody"></p>
+        <!-- Aquí pondremos la descripción -->
+      </div>
+      <div class="modal-body">
+        <p>Position in 1st Axelrod1980 Tournament: <span id="modalPosition"> </span></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
   <footer class="footer">Adrian de Haro Ortega.
     <span class="copyleft"> &copy; </span>
     Prissioner´s dilemma · Todos los derechos reservados
