@@ -684,8 +684,8 @@ function addResults() {
     var panel = document.getElementById("panel2");
     var clasificacion = "<table class='table w-100 table-success table-striped table-hover'>  <thead> <tr><th>Code</th><th>Título</th><th>Autor</th> <th>Puntuación</th> </tr> "
         + strategies.map(item =>
-        ("<tr class='description-row' data-Author='" + item.Author.replace(/'/g, "&apos;") + "' data-position='" + item.position + "' data-name='" + item.full_name.replace(/'/g, "&apos;") + "' data-description='" + item.description.replace(/'/g, "&apos;") + "'><th>" + item.name + "</th> " +
-             "<td>" + item.full_name + "</td> <td> " + item.Author + "</td> <td> " + item.points + "</td></tr>")
+        ("<tr class='description-row' data-Author='" + item.Author.replace(/'/g, "&apos;") + "' data-position='" + item.position + "' data-name='" + item.full_name.replace(/'/g, "&apos;") + "' data-description='" + item.description.replace(/'/g, "&apos;") + "' data-descripcion='" + item.descripcion.replace(/'/g, "&apos;") + "'><th>" + item.name + "</th> " +
+            "<td>" + item.full_name + "</td> <td> " + item.Author + "</td> <td> " + item.points + "</td></tr>")
         ).join('') +
         '</table>';
 
@@ -696,10 +696,12 @@ function addResults() {
     rows.forEach(row => {
         row.addEventListener('click', function () {
             var description = this.getAttribute('data-description');
+            var descripcion = this.getAttribute('data-descripcion');
             var full_name = this.getAttribute('data-name');
             var position = this.getAttribute('data-position');
             var author = this.getAttribute('data-Author');
             document.getElementById('modalDescriptionBody').innerHTML = description;
+            document.getElementById('modalDescripcionBody').innerHTML = descripcion;
             document.getElementById('descriptionModalLabel').innerHTML = full_name;
             document.getElementById('modalPosition').innerHTML = position;
             document.getElementById('modalAuthor').innerHTML = author;
